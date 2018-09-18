@@ -1,0 +1,73 @@
+﻿<Window x:Class="RDC2_0041.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RDC2_0041"
+        mc:Ignorable="d"
+        Title="Таймер RDC2-0041" Icon="images/RDC_logo_r.png" Height="375" Width="740" MinWidth="740" MaxWidth="740" MinHeight="375" Closing="WindowIsClosing">
+    <Window.Background>
+        <ImageBrush ImageSource="images/back.jpg"/>
+    </Window.Background>
+    <Window.CommandBindings>
+        <CommandBinding Command="Copy" Executed="CopyEventButton_Click" />
+        <CommandBinding Command="Paste" Executed="PasteEventButton_Click" />
+        <CommandBinding Command="Delete" Executed="DeleteEventButton_Click" />
+        <CommandBinding Command="New" Executed="NewEventButton_Click" />
+        <CommandBinding Command="Replace" Executed="EditEventButton_Click" />
+        <CommandBinding Command="Open" Executed="OpenFileButton_Click"/>
+        <CommandBinding Command="Save" Executed="SaveFileButton_Click"/>
+    </Window.CommandBindings>
+    <Grid>
+        <DockPanel Margin="0,0,0,0">
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="Файл">
+                    <MenuItem Command="Open" />
+                    <MenuItem Command="Save" />
+                </MenuItem>
+                <MenuItem Header="Событие">
+                    <MenuItem Command="New"/>
+                    <MenuItem Command="Replace" Header="Редактировать" />
+                    <MenuItem Command="Copy" />
+                    <MenuItem Command="Paste" />
+                    <MenuItem Command="Delete" />
+                    <MenuItem Header="Удалить все события" Click="DeleteAllButton_Click" />
+                </MenuItem>
+                <MenuItem x:Name="ServiceMenu" Header="Сервис">
+                    <MenuItem x:Name="DownloadMenu" Header="Загрузить конфигурацию в устройство" Click="DownloadButton_Click"/>
+                    <MenuItem x:Name="UploadMenu" Header="Прочитать конфигурацию из устройства" Click="UpLoadButton_Click"/>
+                    <MenuItem x:Name="ClearMenu" Header="Очистить конфигурацию устройства" Click="ClearConfigButton_Click"/>
+                    <MenuItem x:Name="TimeMenu" Header="Настройки времени" Click="TimeSetButton_Click"/>
+                </MenuItem>
+            </Menu>
+            <TabControl x:Name="WeekDays" Height="23" Margin="10,10,10,0" VerticalAlignment="Top" DockPanel.Dock="Top" HorizontalAlignment="Left" BorderThickness="1,1,1,0" SelectedIndex="0" SelectionChanged="WeekDayChanged">
+                <TabItem Header="ПОНЕДЕЛЬНИК" Width="100"/>
+                <TabItem Header="ВТОРНИК" Width="100"/>
+                <TabItem Header="СРЕДА" Width="100"/>
+                <TabItem Header="ЧЕТВЕРГ" Width="100"/>
+                <TabItem Header="ПЯТНИЦА" Width="100"/>
+                <TabItem Header="СУББОТА" Width="100"/>
+                <TabItem Header="ВОСКРЕСЕНЬЕ" Width="100"/>
+            </TabControl>
+            <Border DockPanel.Dock="Bottom" Background="#FFEEEEEE" Margin="12,0,10,10" BorderThickness="2" BorderBrush="#FFD4C9C9" Height="32">
+                <Grid Margin="0">
+                    <Image x:Name="StateImage" HorizontalAlignment="Left" Margin="3,0,0,0"/>
+                    <TextBlock x:Name="StateTextBlock" Margin="50,0,0,0" TextWrapping="Wrap" Foreground="Black" FontSize="14" VerticalAlignment="Center"/>
+                </Grid>
+            </Border>            
+            <ListBox x:Name="Events" Margin="12,3,10,0" DockPanel.Dock="Top" SelectionMode="Extended" Drop="DropFile" AllowDrop="True" PreviewDragOver="FilePreviewDragOver" PreviewDragEnter="FilePreviewDragEnter" Background="#FFEEEEEE">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Width="Auto" Orientation="Horizontal" Height="45">
+                            <TextBlock Text="{Binding Hours, StringFormat={}{0:00}}" Margin="10,0,0,0" Width="Auto" VerticalAlignment="Center" FontSize="16" />
+                            <TextBlock Text=":" Margin="5,0,0,0" Width="Auto" VerticalAlignment="Center" FontSize="16" />
+                            <TextBlock Text="{Binding Minutes, StringFormat={}{0:00}}" Margin="5,0,0,0" Width="Auto" VerticalAlignment="Center" FontSize="16" />
+                            <TextBlock Text="Реле:" Margin="10,0,0,0" Width="Auto" VerticalAlignment="Center" FontSize="16" />
+                            <TextBlock Text="{Binding RelayState}" Margin="5,0,0,0" Width="Auto" VerticalAlignment="Center" FontSize="16" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </DockPanel>
+    </Grid>
+</Window>
