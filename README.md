@@ -1,1 +1,2 @@
-# RDC2-0041-Weekly-daily-timer
+![](https://static.chipdip.ru/lib/926/DOC003926002.jpg)
+![](https://static.chipdip.ru/lib/926/DOC003926005.jpg)
