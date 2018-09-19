@@ -18,5 +18,6 @@
 •	Синхронизация часов – системное время ПК
 •	Формат файла расписания - .txt
 •	Размер платы мм – 50,8 x 50,8 x 10,0 
+
 ![](https://github.com/chipdipru/pictures/blob/master/PCB1_0041_300.jpg)
 ![](https://github.com/chipdipru/pictures/blob/master/PCB2_0041_300.jpg)
